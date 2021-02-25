@@ -1,0 +1,2 @@
+Prefix plugins/ASVAssign/example
+Plugin ASVAssign inputfile parameters.txt outputfile asv
