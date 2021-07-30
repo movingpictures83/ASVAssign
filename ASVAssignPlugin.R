@@ -77,6 +77,10 @@ row.names(asv_tab) <- sub(">", "", asv_headers)
 write.table(asv_tab, paste(outputfile, ".counts.tsv", sep=""), sep="\t", quote=F, col.names=NA)
 asv_tab
 
+asv_tab1 = as.data.frame(asv_tab)
+write.csv(asv_tab1, paste(outputfile, ".tab.csv", sep=""))
+
+
 # tax table:
 asv_tax <- taxa
 row.names(asv_tax) <- sub(">", "", asv_headers)
