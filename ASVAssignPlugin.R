@@ -63,6 +63,9 @@ asv_headers <<- vector(dim(seqtab.nochim)[2], mode="character")
 for (i in 1:dim(seqtab.nochim)[2]) {
   asv_headers[i] <<- paste(">ASV", i, sep="_")
 }
+#print(asv_seqs)
+#print(asv_headers)
+#print("DONE RUN")
 }
 
 output <- function(outputfile) {
@@ -74,10 +77,15 @@ asv_fasta
 # count table:
 asv_tab <- t(seqtab.nochim)
 row.names(asv_tab) <- sub(">", "", asv_headers)
+#print(colnames(asv_tab))
+colnames(asv_tab) <- gsub('_F_filt.fastq.gz','',colnames(asv_tab))
+#print(colnames(asv_tab))
 write.table(asv_tab, paste(outputfile, ".counts.tsv", sep=""), sep="\t", quote=F, col.names=NA)
 asv_tab
 
 asv_tab1 = as.data.frame(asv_tab)
+#print(colnames(asv_tab1))
+colnames(asv_tab1) <- gsub('_F_filt.fastq.gz','',colnames(asv_tab1))
 write.csv(asv_tab1, paste(outputfile, ".tab.csv", sep=""))
 
 
